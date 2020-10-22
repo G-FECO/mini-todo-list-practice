@@ -1,0 +1,23 @@
+$boxAttributes: (
+  'p': 'padding',
+  'm': 'margin'
+);
+
+$directions: (
+  't': 'top',
+  'b': 'bottom',
+  'l': 'left',
+  'r': 'right'
+);
+
+@for $times from 1 through 10 {
+  $spaceGap: 5 * $times;
+
+  @each $shortBoxAttr, $fullBoxAttr in $boxAttributes {
+    @each $shortDirAttr, $fullDirAttr in $directions {
+      .#{$shortBoxAttr}#{$shortDirAttr}-#{$times} {
+        #{$fullBoxAttr}-#{$fullDirAttr}: #{$spaceGap}px;
+      }
+    }
+  }
+}
