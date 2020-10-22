@@ -6,8 +6,7 @@
 </template>
 
 <script>
-// mapGetters: vuex의 getters를 
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -16,20 +15,20 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['lastlyTodoId'])
+    ...mapGetters(["lastlyTodoId"])
   },
   methods: {
     addTodo() {
       if (this.contents.length === 0) {
-        alert('1자 이상 입력해주세요.');
-        return
+        alert("1자 이상 입력해주세요.");
+        return;
       }
-      
-      this.$store.commit('addTodo', {
+
+      this.$store.commit("addTodo", {
         id: this.lastlyTodoId + 1,
         contents: this.contents
       });
-      this.contents = '';
+      this.contents = "";
     }
   }
 };

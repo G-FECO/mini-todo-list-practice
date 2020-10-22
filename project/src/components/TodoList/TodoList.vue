@@ -41,13 +41,13 @@ main {
     text-align: center;
 
     > i {
-      font-size: 6rem;
+      font-size: 8rem;
       color: $colorWarning;
       margin-bottom: 0.5rem;
     }
 
     > p {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       font-weight: 700;
     }
   }

@@ -16,7 +16,7 @@ $directions: (
   @each $shortBoxAttr, $fullBoxAttr in $boxAttributes {
     @each $shortDirAttr, $fullDirAttr in $directions {
       .#{$shortBoxAttr}#{$shortDirAttr}-#{$times} {
-        #{$fullBoxAttr}-#{$fullDirAttr}: #{$spaceGap}px;
+        #{$fullBoxAttr}-#{$fullDirAttr}: #{$spaceGap}px !important;
       }
     }
   }

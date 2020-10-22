@@ -14,8 +14,10 @@ const mutations = {
   },
   toggleCompleted(state, todoId) {
     state.todos = state.todos.map(todo => {
-      return todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-    })
+      return todo.id === todoId
+        ? { ...todo, completed: !todo.completed }
+        : todo;
+    });
   },
   deleteTodo(state, todoId) {
     const todoIndex = state.todos.findIndex(todo => todo.id === todoId);
@@ -25,8 +27,8 @@ const mutations = {
 
 const getters = {
   lastlyTodoId(state) {
-    return state.todos[state.todos.length - 1].id;
+    return state.todos.length > 0 ? state.todos[state.todos.length - 1].id : 0;
   }
-}
+};
 
 export default { state, mutations, getters };

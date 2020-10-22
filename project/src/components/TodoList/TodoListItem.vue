@@ -27,10 +27,10 @@ export default {
   },
   methods: {
     toggleCompleted() {
-      this.$store.commit('toggleCompleted', this.todo.id);
+      this.$store.commit("toggleCompleted", this.todo.id);
     },
     deleteTodo() {
-      this.$store.commit('deleteTodo', this.todo.id);
+      this.$store.commit("deleteTodo", this.todo.id);
     }
   }
 };
