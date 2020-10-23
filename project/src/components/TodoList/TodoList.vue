@@ -39,7 +39,8 @@ export default {
 <style lang="scss" scoped>
 .todo-list {
   width: 80%;
-  margin: 0 auto;
+  min-height: calc(100vh - 103px);
+  margin: 1rem auto;
 
   li {
     margin-bottom: 0.8rem;
