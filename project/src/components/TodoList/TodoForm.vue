@@ -1,12 +1,16 @@
 <template>
   <form @submit.prevent="addTodo">
-    <input type="text" v-model="contents" />
-    <button>+</button>
+    <input
+      type="text"
+      v-model="contents"
+      placeholder="추가할 Todo를 작성해주세요."
+    />
+    <button>Add</button>
   </form>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -15,6 +19,9 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      userId: state => state.user.userId
+    }),
     ...mapGetters(["lastlyTodoId"])
   },
   methods: {
@@ -24,8 +31,9 @@ export default {
         return;
       }
 
-      this.$store.commit("addTodo", {
+      this.$store.dispatch("ADD_TODO", {
         id: this.lastlyTodoId + 1,
+        user_id: this.userId,
         contents: this.contents
       });
       this.contents = "";

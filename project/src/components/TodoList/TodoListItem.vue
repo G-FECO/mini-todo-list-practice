@@ -23,14 +23,21 @@ export default {
   props: {
     todo: {
       type: Object
+    },
+    todoKey: {
+      type: String
     }
   },
   methods: {
     toggleCompleted() {
-      this.$store.commit("toggleCompleted", this.todo.id);
+      const payload = {
+        todoKey: this.todoKey,
+        completed: !this.todo.completed
+      };
+      this.$store.dispatch("TOGGLE_COMPLETED_TODO", payload);
     },
     deleteTodo() {
-      this.$store.commit("deleteTodo", this.todo.id);
+      this.$store.dispatch("DELETE_TODO", this.todoKey);
     }
   }
 };
