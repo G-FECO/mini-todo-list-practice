@@ -3,6 +3,7 @@
     <div class="d-flex justify-content-between">
       <div class="todo-item-index">No.{{ todo.id }}</div>
       <div class="todo-item-icons">
+        <i class="fas fa-edit" v-if="!isEdit" @click="toggleShowEditForm"></i>
         <input
           type="checkbox"
           class="mr-1"
@@ -12,8 +13,18 @@
         <i class="fas fa-trash-alt" @click="deleteTodo"></i>
       </div>
     </div>
-    <div :class="`todo-item-contents ${todo.completed ? 'completed' : ''}`">
+    <div
+      v-if="!isEdit"
+      :class="`todo-item-contents ${todo.completed ? 'completed' : ''}`"
+    >
       {{ todo.contents }}
+    </div>
+    <div v-else>
+      <form @submit.prevent="editTodo">
+        <input type="text" v-model="editContents" />
+        <button type="submit">Edit</button>
+      </form>
+      <button @click="toggleShowEditForm">CLOSE</button>
     </div>
   </div>
 </template>
@@ -28,6 +39,15 @@ export default {
       type: String
     }
   },
+  data() {
+    return {
+      isEdit: false,
+      editContents: ""
+    };
+  },
+  mounted() {
+    this.bindContents();
+  },
   methods: {
     toggleCompleted() {
       const payload = {
@@ -35,6 +55,20 @@ export default {
         completed: !this.todo.completed
       };
       this.$store.dispatch("TOGGLE_COMPLETED_TODO", payload);
+    },
+    bindContents() {
+      this.editContents = this.todo.contents;
+    },
+    toggleShowEditForm() {
+      this.isEdit = !this.isEdit;
+    },
+    editTodo() {
+      const payload = {
+        todoKey: this.todoKey,
+        contents: this.editContents
+      };
+      this.$store.dispatch("UPDATE_TODO", payload);
+      this.toggleShowEditForm();
     },
     deleteTodo() {
       this.$store.dispatch("DELETE_TODO", this.todoKey);

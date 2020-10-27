@@ -13,6 +13,9 @@ export function addTodo(todo) {
 }
 
 // update Todo
+export function updateTodo(todoKey, contents) {
+  return instance.patch(`/todos/${todoKey}/.json`, { contents });
+}
 
 // toggle Todo Completed
 export function toggleCompletedTodo(todoKey, completed) {

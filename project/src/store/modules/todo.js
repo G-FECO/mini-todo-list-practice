@@ -32,6 +32,10 @@ const actions = {
     await todoApi.addTodo(newTodo);
     dispatch("GET_TODOS");
   },
+  async UPDATE_TODO({ dispatch }, { todoKey, contents }) {
+    await todoApi.updateTodo(todoKey, contents);
+    dispatch("GET_TODOS");
+  },
   async TOGGLE_COMPLETED_TODO({ dispatch }, { todoKey, completed }) {
     await todoApi.toggleCompletedTodo(todoKey, completed);
     dispatch("GET_TODOS");
